@@ -6,7 +6,7 @@ var path = require('path');
 
 var paths = {
   es6: ['es6/*.js'],
-  es5: '.',
+  es5: 'lib',
   // Must be absolute or relative to source map
   sourceRoot: path.join(__dirname, 'es6'),
 };
@@ -14,9 +14,7 @@ var paths = {
 gulp.task('babel', function() {
   return gulp.src(paths.es6)
   .pipe(sourcemaps.init())
-  .pipe(babel({
-    plugins: ['transform-object-assign']
-  }))
+  .pipe(babel())
   .pipe(sourcemaps.write('.', { sourceRoot: paths.sourceRoot }))
   .pipe(gulp.dest(paths.es5));
 });
